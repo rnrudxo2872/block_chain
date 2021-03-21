@@ -1,19 +1,26 @@
-class PersonInfo{
-    public personName: string;
-    public age: number;
-    public rer: string;
-
-    constructor(name:string,age:number,rer?:string){
-        this.personName = name;
-        this.age = age;
-        this.rer = rer;
+class Block{
+    public index: number;
+    public hash: string;
+    public previousHash: string;
+    public data : string;
+    public timestaps : number;
+    
+    constructor(
+        index: number,
+        hash: string,
+        previousHash: string,
+        data : string,
+        timestaps : number){
+        this.index = index;
+        this.hash = hash;
+        this.previousHash = previousHash;
+        this.data = data;
+        this.timestaps = timestaps;
     }
 }
 
-let myinfo = new PersonInfo("Koo",26,"개발자");
+const genesisBlock:Block = new Block(0,"231454","","I'm first block!",123); // 초기 블럭 생성
+let BlockChain: [Block] = [genesisBlock]; // 첫 블럭을 chain에 넣는다.
 
-let temp = (obj:PersonInfo):string =>{
-    return(`hellow, he name is ${obj.personName} old ${obj.age} ${obj.rer}`);   
-}
+console.log(BlockChain);
 
-console.log(temp(myinfo));
