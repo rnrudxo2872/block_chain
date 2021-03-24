@@ -19,7 +19,15 @@ const getBlockChain = BlockChain; // 블럭 배열을 반환받아 블럭체인�
 const getLatestBlock = BlockChain[BlockChain.length - 1]; // 마지막으로 업데이트된 블럭을 얻어낸다.
 const getNewTimeStemp = Math.round(new Date().getTime() / 1000); // timestemp를 구하는 상수. 반올림해서 정수 얻음.
 //getTime = 1970.01.01기준 이후 흘러온 milisec. 
-console.log(BlockChain);
-console.log(getLatestBlock);
-console.log(getNewTimeStemp);
+const createNewBlock = (data) => {
+    let preBlock = getLatestBlock;
+    let preHash = preBlock.hash;
+    let NewIdx = preBlock.index + 1;
+    let NewTimeStemp = getNewTimeStemp;
+    let Hash = Block.calculateHash(NewIdx, preHash, data, NewTimeStemp);
+    let NewBlock = new Block(NewIdx, Hash, preHash, data, NewTimeStemp);
+    return NewBlock;
+};
+console.log(createNewBlock('Hi!'), createNewBlock('NoNo'));
+console.log(createNewBlock('he is good man'), createNewBlock('YesYes'));
 //# sourceMappingURL=index.js.map
